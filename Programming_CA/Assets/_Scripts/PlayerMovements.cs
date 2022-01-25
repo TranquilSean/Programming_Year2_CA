@@ -2,15 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
-public class PlayerMovements : MonoBehaviour
-{
+//[RequireComponent(typeof(CharacterController))]
+public class PlayerMovements : MonoBehaviour, PlayerControls.IGameplayActions{
+
+    /*
     [SerializeField]
     private InputActionReference movementControl;
     [SerializeField]
     private InputActionReference jumpControl;
     [SerializeField]
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 5.0f;
     [SerializeField]
     private float rotationSpeed = 4.0f;
     [SerializeField]
@@ -21,35 +22,73 @@ public class PlayerMovements : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private PlayerControls playerControls;
     private Transform cameraMainTransform;
+    */
+    [SerializeField]
+    private PlayerControls playerControls;
+    private float playerSpeed = 5.0f;
+    float xPos;
+    float yPos;
+    float zPos;
+    private Vector3 Direction { get; set; }
 
     public void Awake()
     {
         playerControls = new PlayerControls();
+        playerControls.Gameplay.SetCallbacks(this);
+    }
+
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        // Read Vector 2 from context
+        Vector2 direction = context.ReadValue<Vector2>();
+        // Set Dirction vector values from direction Vector2
+        Direction = new Vector3(direction.x, 0, direction.y);
+        //cameraMainTransform = Camera.main.transform;
+    }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        
     }
 
     private void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
-        cameraMainTransform = Camera.main.transform;
+        //controller = gameObject.GetComponent<CharacterController>();
     }
   
 
     private void OnEnable()
     {
-        movementControl.action.Enable();
-        jumpControl.action.Enable();
+        playerControls.Enable();
+        //movementControl.action.Enable();
+        //jumpControl.action.Enable();
     }
 
     private void OnDisable()
     {
-        movementControl.action.Disable();
-        jumpControl.action.Disable();
+        playerControls.Disable();
+        //movementControl.action.Disable();
+        //jumpControl.action.Disable();
     }
 
     private void Update()
     {
+        // get the current coordinates from the transform
+        xPos = transform.position.x;
+        yPos = transform.position.y;
+        zPos = transform.position.z;
+
+        // Update position of Ship based on input from the Dirction Vector
+        xPos += (Direction.x * Time.deltaTime * playerSpeed);
+        //yPos = -5;
+        // Define forward movement using y value
+        zPos += (Direction.z * Time.deltaTime * playerSpeed);
+
+        //now set the position vector to new coordinates
+        transform.position = new Vector3(xPos, yPos, zPos);
+
+
+        /*
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -76,5 +115,7 @@ public class PlayerMovements : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
+        */
     }
+
 }
