@@ -15,9 +15,12 @@ public class Player_Movement : MonoBehaviour
     float yPos;
     float zPos;
     Vector2 moveInput;
+    private Vector3 startPos;
 
     void Start()
     {
+        startPos = transform.position;
+
         rbPlayer = gameObject.AddComponent<Rigidbody>();
         // Set Up RigidBody Constraints so player doesnt fall over
         rbPlayer.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -46,5 +49,10 @@ public class Player_Movement : MonoBehaviour
     {
         //create Vector3 from Vector2 inputs to deal with X and Z axis
         rbPlayer.velocity = new Vector3(moveInput.x * playerSpeed, rbPlayer.velocity.y, moveInput.y * playerSpeed); 
+    }
+
+    public void gotoStart()
+    {
+        transform.position = startPos; //Return the player to the checkpoint
     }
 }
