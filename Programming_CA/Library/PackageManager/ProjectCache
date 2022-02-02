@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637785817574659246
-    m_Hash: 2453201035
+      ticks: 637793660532143728
+    m_Hash: 1902321345
   m_LockFileStatus:
     m_FilePath: D:/College/Github/Programming_Year2_CA/Programming_CA/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637785817575277593
-    m_Hash: 3120862230
+      ticks: 637793660532143728
+    m_Hash: 1433386951
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -233,10 +233,12 @@ m_PackageAssets:
         - 1.14.4
         - 1.14.7
         - 1.14.9
+        - 1.14.12
         - 1.15.1
         - 1.15.4
         - 1.15.7
         - 1.15.9
+        - 1.15.12
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -257,10 +259,12 @@ m_PackageAssets:
         - 1.14.4
         - 1.14.7
         - 1.14.9
+        - 1.14.12
         - 1.15.1
         - 1.15.4
         - 1.15.7
         - 1.15.9
+        - 1.15.12
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -357,6 +361,7 @@ m_PackageAssets:
         - 3.0.7
         - 3.0.9
         - 3.0.10
+        - 3.0.12
         compatible:
         - 1.0.2
         - 1.0.6
@@ -385,6 +390,7 @@ m_PackageAssets:
         - 3.0.7
         - 3.0.9
         - 3.0.10
+        - 3.0.12
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -752,10 +758,12 @@ m_PackageAssets:
         - 1.1.29
         - 1.1.30
         - 2.0.1-pre.12
+        - 2.0.1-pre.18
         compatible:
         - 1.1.29
         - 1.1.30
         - 2.0.1-pre.12
+        - 2.0.1-pre.18
         verified: 1.1.30
       dependencies:
       - name: com.unity.ext.nunit
@@ -1045,7 +1053,9 @@ m_PackageAssets:
         - 1.6.1
         - 1.6.2
         - 1.6.3
+        - 1.6.4
         - 1.7.0-pre.1
+        - 1.7.0-pre.2
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -1069,7 +1079,9 @@ m_PackageAssets:
         - 1.6.1
         - 1.6.2
         - 1.6.3
+        - 1.6.4
         - 1.7.0-pre.1
+        - 1.7.0-pre.2
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
