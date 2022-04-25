@@ -12,6 +12,7 @@ public class Teleport_Player : MonoBehaviour
         {
 
             other.transform.position = tpPoint.position;
+            other.transform.rotation = tpPoint.rotation;
 
         }
 

@@ -23,12 +23,8 @@ public class Player_Collision : MonoBehaviour
         if (other.gameObject.CompareTag("Chest"))
         {
             eco.SetActive(true);
+            //eco.transform.parent = transform;
             Destroy(other.gameObject);
         }
-    }
-
-    private void Update()
-    {
-        transform.Rotate(Vector3.up, 1);
     }
 }
