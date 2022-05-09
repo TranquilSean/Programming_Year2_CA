@@ -64,7 +64,7 @@ public class Player_Input_Movement : MonoBehaviour
 
         //ANIMATIONS
         //Check that input to move
-        if (vInput > 0.1 || hInput > 0.1)
+        if (vInput > 0.1  || vInput < -0.1 || hInput > 0.1 || hInput < -0.1)
         {
             animator.SetBool("IsWalking", true);
         }
@@ -85,10 +85,10 @@ public class Player_Input_Movement : MonoBehaviour
         {
             // Set runBool to false if not pressed
             animator.SetBool("IsRunning", false);
-            Debug.Log("No Run");
+            //Debug.Log("No Run");
             movementForce = .6f;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+        if (Input.GetKey(KeyCode.Space) && GroundCheck())
         {
             DoJump();
         }

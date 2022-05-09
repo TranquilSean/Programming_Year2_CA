@@ -34,10 +34,7 @@ public class EcoFollow : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-
-        
-        //Move to target
+                
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -52,7 +49,6 @@ public class EcoFollow : MonoBehaviour
             }
             else isScouting = false;
         }
-        //this.transform.position = FollowPoint(transform.position, destination);
 
         if (isScouting)
         {
@@ -67,7 +63,6 @@ public class EcoFollow : MonoBehaviour
 
         if (isFollowing)
         {
-            Debug.Log("Edo idle");
             if (playerDistance >= 2.0f) // Use Vector3.MoveTowards to move Eco to player
             {
                 transform.position = Vector3.MoveTowards(source, player.position, moveSpeed);
@@ -94,7 +89,7 @@ public class EcoFollow : MonoBehaviour
 
     public void Idle()
     {
-        Debug.Log("Edo idle");
+
         if (playerDistance >= 2.0f) // Use Vector3.MoveTowards to move Eco to player
         {
             // Get distance between source and target
@@ -104,8 +99,12 @@ public class EcoFollow : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed);
         }
         else
+        {
             transform.RotateAround(player.position, Vector2.up, rotateSpeed);
+        }
+
         transform.LookAt(player);
+
     }
 
     public void OnTriggerEnter(Collider other)

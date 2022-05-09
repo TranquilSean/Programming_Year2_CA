@@ -8,6 +8,8 @@ TagManager:
   - Spirit
   - Eco
   - Enemy
+  - Prey
+  - Wolf
   layers:
   - Default
   - TransparentFX
