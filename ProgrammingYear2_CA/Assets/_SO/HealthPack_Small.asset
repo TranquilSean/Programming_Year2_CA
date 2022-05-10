@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306f5beb97e38fc40aed6195e1734701, type: 3}
+  m_Name: HealthPack_Small
+  m_EditorClassIdentifier: 
+  itemName: Health Pack Small
+  itemIcon: {fileID: 21300000, guid: 94aaaad3cf4f36040a9070da80c5d813, type: 3}
+  isStackable: 1
+  healthPoints: 10

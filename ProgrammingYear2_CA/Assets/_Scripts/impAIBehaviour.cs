@@ -47,8 +47,9 @@ public class impAIBehaviour : MonoBehaviour
 		anim = GetComponent<Animator>();
 		navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
+		targetObject = GameObject.Find("Player").transform;
 		//Set Orgin
-		origin = new Vector3(54, 0, 64);
+		origin = transform.position;
 
 		navAgent.updatePosition = false;
 
@@ -115,10 +116,7 @@ public class impAIBehaviour : MonoBehaviour
 	{
 		if (col.gameObject.name == "Player")
 		{
-			// Stop the chase by destroying the yellow ball
-			//Destroy(col.gameObject);
 			Debug.Log("Got Ya");
-
 		}
 	}
 	// Seek out RandomBall
@@ -155,21 +153,17 @@ public class impAIBehaviour : MonoBehaviour
 		Debug.Log(currentPosition);
 		if (currentPosition != origin)
 		{
-			// Find array index of given waypoint
 			for (int i = 0; i < waypoints.Length; i++)
 			{
-				// Once found calculate next one
 				if (currentPosition == waypoints[i].transform.position)
 				{
 					// Modulus operator helps to avoid to go out of bounds
-					// And resets to 0 the index count once we reach the end of the array
 					nextIndex = (i + 1) % waypoints.Length;
 				}
 			}
 		}
 		else
 		{
-			// Default is first index in array 
 			nextIndex = 0;
 		}
 		return waypoints[nextIndex].transform.position;
@@ -183,21 +177,15 @@ public class impAIBehaviour : MonoBehaviour
 		Vector3 direction = targetObject.transform.position - transform.position;
 		float angle = Vector3.Angle(direction, transform.forward);
 
-		// Create NavMesh hit var
 		NavMeshHit hit;
 
-		// If the Ray cast hits something other than the target, then true is returned, if not false
-		// So !hit is used to specify visibility and...
-		// If the angle between forward and where the player is, is less than half the angle of view...
 		if (!navAgent.Raycast(targetObject.transform.position, out hit) && angle < fieldOfViewAngle * 0.5f)
 		{
-			// ... the player is Visible
 			isVisible = true;
 
 		}
 		else
 		{
-			// ... the player is Not Visible
 			isVisible = false;
 		}
 	}
