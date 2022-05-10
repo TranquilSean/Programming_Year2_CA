@@ -255,8 +255,6 @@ public class impAIBehaviour : MonoBehaviour
 
 		if (pathLength < 30.0f)
 		{
-			Debug.Log("Path Length: " + pathLength);
-
 			// Set Close Bool true
 			isClose = true;
 		}

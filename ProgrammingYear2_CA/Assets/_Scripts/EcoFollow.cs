@@ -22,7 +22,7 @@ public class EcoFollow : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         //Set up targets and positionals
-        rotateSpeed = 1;
+        rotateSpeed = .5f;
         isFollowing = true;
     }
     private void Update()
@@ -31,9 +31,7 @@ public class EcoFollow : MonoBehaviour
         
         playerDistance = Vector3.Distance(player.position, source);
         targetDistance = Vector3.Distance(source, destination);
-    }
-    void FixedUpdate()
-    {
+   
                 
         if (Input.GetMouseButtonDown(0))
         {
@@ -63,15 +61,7 @@ public class EcoFollow : MonoBehaviour
 
         if (isFollowing)
         {
-            if (playerDistance >= 2.0f) // Use Vector3.MoveTowards to move Eco to player
-            {
-                transform.position = Vector3.MoveTowards(source, player.position, moveSpeed);
-            }
-            else
-            {
-                transform.RotateAround(player.position, Vector2.up, rotateSpeed);
-                transform.LookAt(player);
-            }
+            Idle();
                 
         }
     }
@@ -82,7 +72,7 @@ public class EcoFollow : MonoBehaviour
         // Get distance between source and target
         distance = Vector3.Distance(source, target);
         // Determine speed based on distance and deceleration factor
-        moveSpeed = distance / 0.9f;
+        moveSpeed = distance / 0.5f;
         // return position to follow to
         return Vector3.MoveTowards(source, target, Time.deltaTime * moveSpeed);
     }
@@ -94,9 +84,8 @@ public class EcoFollow : MonoBehaviour
         {
             // Get distance between source and target
             distance = Vector3.Distance(source, player.position);
-            // Determine speed based on distance and deceleration factor
-            moveSpeed = distance / 0.6f;
-            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed);
+            moveSpeed = distance / 0.5f;
+            transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * moveSpeed);
         }
         else
         {
