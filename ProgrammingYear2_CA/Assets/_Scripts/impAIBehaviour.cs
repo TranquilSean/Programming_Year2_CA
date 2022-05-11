@@ -252,4 +252,12 @@ public class impAIBehaviour : MonoBehaviour
 			isClose = false;
 		}
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+		if (other.gameObject.CompareTag("Player"))
+		{
+			//other.SendMessage("TakeDamage", 10);
+		}
+	}
 }

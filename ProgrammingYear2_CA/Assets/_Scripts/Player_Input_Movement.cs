@@ -60,7 +60,6 @@ public class Player_Input_Movement : MonoBehaviour
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
         LookAt();
-        //GroundCheck();
 
         //ANIMATIONS
         //Check that input to move
@@ -74,7 +73,7 @@ public class Player_Input_Movement : MonoBehaviour
         }
 
         // Detect Z Key press
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             // Set runBool to true if pressed
             animator.SetBool("IsRunning", true);
@@ -144,8 +143,4 @@ public class Player_Input_Movement : MonoBehaviour
         }
     }
 
-    public void gotoStart()
-    {
-        transform.position = startPos; //Return the player to the checkpoint
-    }
 }

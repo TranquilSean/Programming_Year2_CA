@@ -106,6 +106,13 @@ public class EcoFollow : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Collected" + other.name);
         }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Defeated" + other.name);
+        }
+
     }
 }
 

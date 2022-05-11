@@ -8,19 +8,9 @@ using System;
 
 //STRUCTS
 [Serializable]
-public struct PlayerData
+public struct CollectableStatus
 {
-    public string playerName;
-    public float health;
-
-}
-
-[Serializable]
-public struct StatisticData
-{
-    public int lastScore;
-    public int highScore;
-    public int points;
+    public int coinscollected;
 }
 
 
@@ -29,35 +19,41 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public Vector3 checkpoint;
-    public UnityEvent<string> addSpirits;
+    public UnityEvent<string> addCoins;
     public UnityEvent<float> updateHealth;
-    private int spirits;
+    private int coins;
 
     //===DATA==
+    public CollectableStatus collectableData;
     string filePath;
-    const string FILE_NAME_PD = "PlayerDataJSONFORMAT.json";
+    const string FILE_NAME = "SaveStatus.json";
 
-    PlayerData playerStats;
+    
 
     private void Start()
     {
-        playerStats = new PlayerData();
+        filePath = Application.persistentDataPath;
+        collectableData = new CollectableStatus();
+        Debug.Log(filePath);
+        //startup initialisation
+        LoadGameStatus();
 
 
         checkpoint = player.transform.position;
-        spirits = 0;
+        coins = 0;
         UpdateUI();
+
     }
 
     public void AddPoints(int num)
     {
-        spirits += num;
+        coins += num;
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        addSpirits.Invoke(spirits.ToString());
+        addCoins.Invoke(coins.ToString());
         //updateHealth.Invoke(player);
     }
 
@@ -84,31 +80,32 @@ public class GameManager : MonoBehaviour
 
     public void LoadGameStatus()
     {
-        if (File.Exists(filePath + "/" + FILE_NAME_PD))
+        if (File.Exists(filePath + "/" + FILE_NAME))
         {
-            string loadedJson = File.ReadAllText(filePath + "/" + FILE_NAME_PD);
-            playerStats = JsonUtility.FromJson<PlayerData>(loadedJson);
+            string loadedJson = File.ReadAllText(filePath + "/" + FILE_NAME);
+            collectableData = JsonUtility.FromJson<CollectableStatus>(loadedJson);
             Debug.Log("File loaded successfully");
         }
         else
         {
-            ResetPlayerData();
+            resetGame();
         }
 
         
     }
     public void SaveGameStatus()
     {
-        string playerStatusJson = JsonUtility.ToJson(playerStats);
+        string collectableDataJson = JsonUtility.ToJson(collectableData);
 
-        File.WriteAllText(filePath + "/" + FILE_NAME_PD, playerStatusJson);
+        File.WriteAllText(filePath + "/" + FILE_NAME, collectableDataJson);
 
         Debug.Log("File created and saved");
     }
 
-    public void ResetPlayerData()
+    public void resetGame()
     {
-        playerStats.playerName = "Sean";
-        playerStats.health = 100;
+        collectableData.coinscollected = 0;
+
+        SaveGameStatus();
     }
 }
